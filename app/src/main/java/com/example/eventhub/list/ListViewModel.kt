@@ -13,6 +13,7 @@ import com.example.eventhub.api.myResponse.MyResponse
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
+
 class ListViewModel : ViewModel() {
 
     val eventsLiveData: MutableLiveData<List<EventModel>> by lazy {
@@ -39,10 +40,11 @@ class ListViewModel : ViewModel() {
                             EventModel(
                                 event.id,
                                 event.title,
-//                                event.location,
+                                event.location,
                                 event.price,
                                 event.imageUrl,
-                                event.description
+                                event.description,
+                                event.date
                             )
                         )
                     }

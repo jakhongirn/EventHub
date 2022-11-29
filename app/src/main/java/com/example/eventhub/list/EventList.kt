@@ -1,6 +1,8 @@
 package com.example.eventhub.list
 
+import android.os.Build
 import android.widget.ListView
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -17,6 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.eventhub.models.EventModel
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 @Composable
@@ -25,7 +29,6 @@ fun EventsList(
     modifier: Modifier = Modifier
 )
 {
-    val context = LocalContext.current
     Box(modifier.fillMaxSize())
     val events by viewModel.eventsLiveData.observeAsState()
 
@@ -49,6 +52,7 @@ fun EventItem(event: EventModel, modifier: Modifier = Modifier) {
     ) {
         Title(title = event.title)
         Description(desc = event.description)
+        Date(date = event.date)
         Divider(
             modifier = Modifier
                 .padding(top = 10.dp)
@@ -68,4 +72,11 @@ private fun Title(title: String) {
 @Composable
 private fun Description(desc: String) {
     Text(text = desc, color = MaterialTheme.colors.secondary)
+}
+
+@Composable
+private fun Date(date: String) {
+    val apiDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+    val dateTime = LocalDate.parse(date, apiDateFormat)
+    Text(text = dateTime.toString(), color = MaterialTheme.colors.primary)
 }
