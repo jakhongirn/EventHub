@@ -8,7 +8,7 @@ data class EventModel (
     val title: String,
     val location: String,
     val price: Double,
-    val imageUrl: URL,
+    val imageUrl: String,
     val description: String,
     val date: String
 )

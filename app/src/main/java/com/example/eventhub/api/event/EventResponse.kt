@@ -14,7 +14,7 @@ data class EventResponse (
     @SerializedName("price")
     val price: Double,
     @SerializedName("url")
-    val imageUrl: URL,
+    val imageURL: String,
     @SerializedName("description")
     val description: String,
     @SerializedName("date")

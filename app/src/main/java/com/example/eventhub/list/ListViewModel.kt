@@ -1,6 +1,7 @@
 package com.example.eventhub.list
 
 import android.util.Log
+import androidx.core.net.toUri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,8 +10,10 @@ import com.example.eventhub.api.RetrofitInstance
 import com.example.eventhub.api.event.EventResponse
 import com.example.eventhub.api.myResponse.MyListResponse
 import com.example.eventhub.api.myResponse.MyResponse
+import com.example.eventhub.utils.dotenv
 
 import kotlinx.coroutines.launch
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.lang.Exception
 
 
@@ -29,7 +32,7 @@ class ListViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response: MyListResponse<EventResponse> =
-                    RetrofitInstance.eventService.getAllEvents("00011843")
+                    RetrofitInstance.eventService.getAllEvents(dotenv.STUDENT_ID)
                 val eventsFromResponse = response.data
 
                 if (eventsFromResponse != null) {
@@ -42,7 +45,7 @@ class ListViewModel : ViewModel() {
                                 event.title,
                                 event.location,
                                 event.price,
-                                event.imageUrl,
+                                event.imageURL,
                                 event.description,
                                 event.date
                             )
@@ -64,7 +67,7 @@ class ListViewModel : ViewModel() {
             try {
 
                 val response: MyResponse = RetrofitInstance.eventService.deleteAllEvents(
-                    "00011843"
+                    dotenv.STUDENT_ID
                 )
 
                 Log.d("Delete_response", response.toString())

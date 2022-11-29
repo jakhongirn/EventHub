@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.eventhub.addEvent.AddEventView
 import com.example.eventhub.list.EventsList
 import com.example.eventhub.ui.theme.EventHubTheme
 
@@ -23,8 +24,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    EventsList()
-                    Text(text = "Hello world")
+//                    EventsList()
+               AddEventView()
                 }
             }
         }

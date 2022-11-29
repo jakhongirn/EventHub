@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EventHub</string>
+    <string name="validation_msg">All fields are compulsory and price must be digits only and date format should be exactly the same as given example.</string>
+    <string name="save_data_button">Save</string>
+    <string name="add_new_saved_successfully_msg">Saved successfully</string>
+    <string name="add_new_failed_to_save_msg">Failed to save</string>
+    <string name="add_new_in_progress_mgs">In progress</string>
 </resources>
