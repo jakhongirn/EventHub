@@ -8,10 +8,8 @@ import java.util.*
 data class EventRequest (
     @SerializedName("title")
     val title: String,
-    @SerializedName("date")
-    val date: Date,
-    @SerializedName("type") //Keeping location value inside a "type" field in the api.
-    val location: String,
+//    @SerializedName("type") //Keeping location value inside a "type" field in the api.
+//    val location: String,
     @SerializedName("price")
     val price: Double,
     @SerializedName("url")

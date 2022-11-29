@@ -1,6 +1,5 @@
 package com.example.eventhub.list
 
-import android.media.metrics.Event
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,16 +15,16 @@ import java.lang.Exception
 
 class ListViewModel : ViewModel() {
 
-    val moviesLiveData: MutableLiveData<List<EventModel>> by lazy {
+    val eventsLiveData: MutableLiveData<List<EventModel>> by lazy {
         MutableLiveData<List<EventModel>>()
     }
 
     init {
-        getListofEventsFromAPI()
-//        deleteAllMovies()
+        getListOfEventsFromAPI()
+//        deleteAllEvents()
     }
 
-    fun getListofEventsFromAPI() {
+    fun getListOfEventsFromAPI() {
         viewModelScope.launch {
             try {
                 val response: MyListResponse<EventResponse> =
@@ -40,8 +39,7 @@ class ListViewModel : ViewModel() {
                             EventModel(
                                 event.id,
                                 event.title,
-                                event.date,
-                                event.location,
+//                                event.location,
                                 event.price,
                                 event.imageUrl,
                                 event.description
@@ -49,7 +47,7 @@ class ListViewModel : ViewModel() {
                         )
                     }
 
-                    moviesLiveData.value = myEvents
+                    eventsLiveData.value = myEvents
                 }
 
             } catch (e: Exception) {
@@ -59,7 +57,7 @@ class ListViewModel : ViewModel() {
 
     }
 
-    fun deleteAllMovies() {
+    fun deleteAllEvents() {
         viewModelScope.launch {
             try {
 
