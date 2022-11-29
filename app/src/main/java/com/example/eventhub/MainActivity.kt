@@ -29,6 +29,7 @@ import com.example.eventhub.list.EventsList
 import com.example.eventhub.ui.theme.EventHubTheme
 import com.example.eventhub.R
 import com.example.eventhub.details.DetailsActivity
+import com.example.eventhub.details.PreviewDetails
 import com.example.eventhub.saved.SavedActivty
 
 
@@ -67,6 +68,7 @@ class MainActivity : ComponentActivity() {
                     }) {
                         Navigation(navController = navController)
                     }
+
                 }
             }
         }
