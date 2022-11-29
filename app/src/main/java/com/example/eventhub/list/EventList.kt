@@ -26,9 +26,11 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun EventsList(
     viewModel: ListViewModel = ListViewModel(),
+    onEventClick: (String) -> Unit = {},
     modifier: Modifier = Modifier
 )
 {
+    val context = LocalContext.current
     Box(modifier.fillMaxSize())
     val events by viewModel.eventsLiveData.observeAsState()
 
@@ -36,7 +38,7 @@ fun EventsList(
         .fillMaxWidth()) {
         events?.let {
             items(items = it.toList(), itemContent = {item ->
-                EventItem(event = item)
+                EventItem(event = item, onEventClick)
             })
         }
 
@@ -44,11 +46,12 @@ fun EventsList(
 }
 
 @Composable
-fun EventItem(event: EventModel, modifier: Modifier = Modifier) {
+fun EventItem(event: EventModel, onEventClick: (String) -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier
             .fillMaxWidth()
             .padding(15.dp, 10.dp, 15.dp, 0.dp)
+            .clickable { onEventClick(event.id.toString()) }
     ) {
         Title(title = event.title)
         Description(desc = event.description)
