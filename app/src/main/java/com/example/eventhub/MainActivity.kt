@@ -1,23 +1,27 @@
 package com.example.eventhub
 
 import android.os.Bundle
+import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -50,8 +54,13 @@ class MainActivity : ComponentActivity() {
                             items = listOf(
                                 BottomNavItem(
                                     name = stringResource(id = R.string.nav_menu_explore),
-                                    route = "moviesList",
+                                    route = "eventsList",
                                     icon = Icons.Default.List
+                                ),
+                                BottomNavItem(
+                                    name = stringResource(id = R.string.nav_menu_add),
+                                    route = "add",
+                                    icon = Icons.Default.Create
                                 ),
                                 BottomNavItem(
                                     name = stringResource(id = R.string.nav_menu_saved),
@@ -79,16 +88,19 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Navigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "moviesList") {
-        composable("moviesList") {
+    NavHost(navController = navController, startDestination = "eventsList") {
+        composable("eventsList") {
             EventsList(
                 onEventClick = { eventId ->
                     navController.navigate("details/$eventId")
                 }
             )
         }
+        composable("add") {
+            AddEventView()
+        }
 
-        composable("settings") {
+        composable("saved") {
             SavedActivty()
         }
 
@@ -102,6 +114,7 @@ fun Navigation(navController: NavHostController) {
 }
 
 
+
 @Composable
 fun BottomNavigationBar(
     items: List<BottomNavItem>,
@@ -112,9 +125,15 @@ fun BottomNavigationBar(
     val backStackEntry = navController.currentBackStackEntryAsState()
 
     BottomNavigation(
-        modifier = modifier,
-        backgroundColor = Color.DarkGray,
-        elevation = 5.dp
+        modifier = modifier
+            .zIndex(5F)
+            .shadow(
+            elevation = 30.dp,
+            shape = RectangleShape,
+            clip = true
+            ),
+        backgroundColor = Color.White,
+
     ) {
         items.forEach { item ->
             val selected = item.route == backStackEntry.value?.destination?.route
@@ -137,3 +156,24 @@ fun BottomNavigationBar(
         }
     }
 }
+
+//@Preview(showBackground = true)
+//@Composable
+//fun previewNav()
+//{
+//    Spacer(modifier = (Modifier.height(16.dp)))
+//    Row(modifier =
+//    Modifier
+//        .fillMaxWidth()
+//        .height(20.dp)
+//        .shadow(
+//            elevation = 20.dp,
+//            shape = RectangleShape,
+//            clip = true,
+//
+//        )
+//        .zIndex(5F)
+//    ) {
+//
+//    }
+//}
