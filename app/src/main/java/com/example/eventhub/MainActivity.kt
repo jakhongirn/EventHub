@@ -36,8 +36,9 @@ import com.example.eventhub.addEvent.AddEventView
 import com.example.eventhub.list.EventsList
 import com.example.eventhub.ui.theme.EventHubTheme
 import com.example.eventhub.R
+import com.example.eventhub.addEvent.AddEventViewModel
+import com.example.eventhub.api.event.EventRequest
 import com.example.eventhub.details.DetailsActivity
-import com.example.eventhub.details.PreviewDetails
 import com.example.eventhub.list.PreviewList
 import com.example.eventhub.list.UpcomingEventCard
 import com.example.eventhub.saved.SavedActivty
@@ -47,6 +48,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
 
             EventHubTheme {
 
@@ -168,30 +170,3 @@ fun BottomNavigationBar(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewListActivity(modifier: Modifier = Modifier) {
-   PreviewList()
-}
-
-//@Preview(showBackground = true)
-//@Composable
-//fun previewNav()
-//{
-//    Spacer(modifier = (Modifier.height(16.dp)))
-//    Row(modifier =
-//    Modifier
-//        .fillMaxWidth()
-//        .height(20.dp)
-//        .shadow(
-//            elevation = 20.dp,
-//            shape = RectangleShape,
-//            clip = true,
-//
-//        )
-//        .zIndex(5F)
-//    ) {
-//
-//    }
-//}

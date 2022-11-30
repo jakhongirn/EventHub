@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.inputmethodservice.Keyboard
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -54,8 +55,20 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
     val isProgressVisible = remember { mutableStateOf(false)}
 
     val response by viewModel.insertEventResponse.observeAsState()
-
-
+    val isChecking = remember { mutableStateOf(true)}
+//   if (isChecking.value) {
+//       viewModel.saveNewEventToApi(
+//           EventRequest(
+//               "alsjkd",
+//               "kasdhf",
+//               12.5,
+//               "kasldksa",
+//               "ajdskfj;das",
+//               "2022-12-12 00:00:00"
+//           )
+//       )
+//       isChecking.value = false
+//   }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -107,29 +120,36 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
         val validationMsg = stringResource(id = R.string.validation_msg)
 
         AddEventButton {
-            if (isInputValid(title.value, description.value, date.value, price.value, location.value, imageURL.value)) {
+            Log.d(title.value, date.value)
+            Log.d(location.value, price.value)
+//
+            if (isInputValid(title.value, description.value, date.value, location.value, imageURL.value)) {
                 viewModel.saveNewEventToApi(
                     EventRequest(
-                        title.value,
-                        description.value,
-                        price.value.toDouble(),
-                        imageURL.value,
-                        date.value,
-                        location.value
+                        title = title.value,
+                        location = location.value,
+                        description = description.value,
+                        imageURL = imageURL.value,
+                        date = date.value,
+                        price = price.value.toDouble()
                     )
                 )
 
                 isProgressVisible.value = true
-
-            } else {
-                val toast = Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT)
-                toast.setGravity(Gravity.CENTER, 0, 0)
-                toast.show()
+                isChecking.value = false
+               Log.d("success", "success")
+            }
+            else {
+//                val toast = Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT)
+//                toast.setGravity(Gravity.CENTER, 0, 0)
+//                toast.show()
+                Log.d("fail","fail")
+            }
             }
         }
-    }
 
-    response?.let { ProgressWidget(response = it, isVisible = isProgressVisible.value, context) }
+
+    response?.let { ProgressToastShow(response = it, isVisible = isProgressVisible.value, context) }
 
 }
 
@@ -215,19 +235,18 @@ private fun isInputValid(
     description: String,
     date: String,
     location: String,
-    price: String,
     imageURL: String
 ): Boolean {
     if (title.isBlank() || description.isBlank() || date.isBlank()) return false
 
-    if (location.isBlank() || imageURL.isBlank() || !price.isDigitsOnly()) return false
+    if (location.isBlank() || imageURL.isBlank()) return false
 
     return true
 }
 
 
 @Composable
-private fun ProgressWidget(response: MyResponse, isVisible: Boolean, context: Context) {
+private fun ProgressToastShow(response: MyResponse, isVisible: Boolean, context: Context) {
     if (isVisible) {
         Box(
             modifier = Modifier
@@ -249,9 +268,4 @@ private fun ProgressWidget(response: MyResponse, isVisible: Boolean, context: Co
 
         context.startActivity(Intent(context, MainActivity::class.java))
     }
-}
-@Preview
-@Composable
-fun PreviewInput() {
-    AddEventView()
 }
