@@ -10,13 +10,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.rounded.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,6 +38,8 @@ import com.example.eventhub.ui.theme.EventHubTheme
 import com.example.eventhub.R
 import com.example.eventhub.details.DetailsActivity
 import com.example.eventhub.details.PreviewDetails
+import com.example.eventhub.list.PreviewList
+import com.example.eventhub.list.UpcomingEventCard
 import com.example.eventhub.saved.SavedActivty
 
 
@@ -41,7 +47,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             EventHubTheme {
+
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -55,17 +63,17 @@ class MainActivity : ComponentActivity() {
                                 BottomNavItem(
                                     name = stringResource(id = R.string.nav_menu_explore),
                                     route = "eventsList",
-                                    icon = Icons.Default.List
+                                    drawable = R.drawable.baseline_explore_24
                                 ),
                                 BottomNavItem(
                                     name = stringResource(id = R.string.nav_menu_add),
                                     route = "add",
-                                    icon = Icons.Default.Create
+                                    drawable = R.drawable.baseline_add_circle_24
                                 ),
                                 BottomNavItem(
                                     name = stringResource(id = R.string.nav_menu_saved),
                                     route = "saved",
-                                    icon = Icons.Default.Settings
+                                    drawable = R.drawable.round_bookmark_24
                                 )
 
                             ),
@@ -75,7 +83,11 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     }) {
-                        Navigation(navController = navController)
+                        innerPadding ->
+                        Box(modifier = Modifier.padding(innerPadding)) {
+                            Navigation(navController = navController)
+                        }
+
                     }
 
                 }
@@ -126,11 +138,10 @@ fun BottomNavigationBar(
 
     BottomNavigation(
         modifier = modifier
-            .zIndex(5F)
             .shadow(
-            elevation = 30.dp,
-            shape = RectangleShape,
-            clip = true
+                elevation = 30.dp,
+                shape = RectangleShape,
+                clip = true
             ),
         backgroundColor = Color.White,
 
@@ -140,21 +151,28 @@ fun BottomNavigationBar(
             BottomNavigationItem(
                 selected = selected,
                 onClick = { onItemClick(item) },
-                selectedContentColor = Color.Green,
-                unselectedContentColor = Color.Gray,
+                selectedContentColor = colorResource(R.color.primary_blue),
+                unselectedContentColor = colorResource(R.color.light_blue),
                 icon = {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Icon(imageVector = item.icon, contentDescription = item.name)
+                        Icon(imageVector = ImageVector.vectorResource(item.drawable), contentDescription = item.name)
                         Text(
                             text = item.name,
                             textAlign = TextAlign.Center,
                             fontSize = 15.sp
                         )
+
                     }
                 }
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewListActivity(modifier: Modifier = Modifier) {
+   PreviewList()
 }
 
 //@Preview(showBackground = true)

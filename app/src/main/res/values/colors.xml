@@ -7,6 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="primary_blue">#5669FF</color>
     <color name="save_event_color">#F5F8F7</color>
-    <color name="light_bg">#5669FF</color>
+    <color name="secondary_red">#EB5757</color>
+    <color name="light_blue">#94A0FF</color>
+    <color name="primary_purple">#4A43EC</color>
 </resources>

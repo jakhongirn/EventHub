@@ -127,10 +127,10 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
                 toast.show()
             }
         }
-
-
     }
+
     response?.let { ProgressWidget(response = it, isVisible = isProgressVisible.value, context) }
+
 }
 
 @Composable

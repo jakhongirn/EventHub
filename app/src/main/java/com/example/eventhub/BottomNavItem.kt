@@ -1,9 +1,11 @@
 package com.example.eventhub
 
+import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.vector.ImageVector
+
 
 data class BottomNavItem(
     val name: String,
     val route: String,
-    val icon: ImageVector
+    @DrawableRes val drawable: Int
     )
