@@ -56,19 +56,6 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
 
     val response by viewModel.insertEventResponse.observeAsState()
     val isChecking = remember { mutableStateOf(true)}
-//   if (isChecking.value) {
-//       viewModel.saveNewEventToApi(
-//           EventRequest(
-//               "alsjkd",
-//               "kasdhf",
-//               12.5,
-//               "kasldksa",
-//               "ajdskfj;das",
-//               "2022-12-12 00:00:00"
-//           )
-//       )
-//       isChecking.value = false
-//   }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -79,39 +66,39 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
         StringInput(
             value = title.value,
             onValueChange = { title.value = it},
-            label = "Event title",
-            placeholder = "e.g. Google I/O"
+            label = stringResource(R.string.add_event_title),
+            placeholder = stringResource(R.string.placeholder_event_title)
         )
         StringInput(value = date.value,
             onValueChange = {date.value = it} ,
-            label = "Date & Time",
-            placeholder = "e.g. 2022-12-31"
+            label = stringResource(R.string.add_date_time),
+            placeholder = stringResource(R.string.placeholder_date_time)
         )
         StringInput(
             value = location.value,
             onValueChange = { location.value = it},
-            label = "Location",
-            placeholder = "e.g. Tashkent, Uzbekistan"
+            label = stringResource(R.string.add_location_title),
+            placeholder = stringResource(R.string.placeholder_location)
         )
         
         PriceInput(
                 value = price.value,
                 onValueChange = { price.value = it},
-                label = "Price",
-                placeholder = "e.g. 9.89",
+                label = stringResource(R.string.add_event_price),
+                placeholder = stringResource(R.string.placeholder_price),
                 fractionNumber = 0.3F
         )
         StringInput(
             value = imageURL.value,
             onValueChange = { imageURL.value = it},
-            label = "Image Link",
-            placeholder = "e.g. 'https://www.google.com/images...'"
+            label = stringResource(R.string.add_event_imageURL),
+            placeholder = stringResource(R.string.placeholder_imageURL)
         )
         StringInput(
             value = description.value,
             onValueChange = { description.value = it},
-            label = "Description",
-            placeholder = "e.g. 'Annual developer conference held by Google in Mountain View, California.'",
+            label =stringResource(R.string.add_event_description),
+            placeholder = stringResource(R.string.placeholder_description),
             height = 120
         )
 
@@ -122,7 +109,6 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
         AddEventButton {
             Log.d(title.value, date.value)
             Log.d(location.value, price.value)
-//
             if (isInputValid(title.value, description.value, date.value, location.value, imageURL.value)) {
                 viewModel.saveNewEventToApi(
                     EventRequest(
@@ -137,13 +123,13 @@ fun AddEventView(viewModel: AddEventViewModel = AddEventViewModel()) {
 
                 isProgressVisible.value = true
                 isChecking.value = false
-               Log.d("success", "success")
+//               Log.d("200", "success")
             }
             else {
-//                val toast = Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT)
-//                toast.setGravity(Gravity.CENTER, 0, 0)
-//                toast.show()
-                Log.d("fail","fail")
+              val toast = Toast.makeText(context, validationMsg, Toast.LENGTH_SHORT)
+               toast.setGravity(Gravity.CENTER, 0, 0)
+               toast.show()
+//                Log.d("400","fail")
             }
             }
         }
@@ -255,7 +241,7 @@ private fun ProgressToastShow(response: MyResponse, isVisible: Boolean, context:
         ) {
             Text(
                 modifier = Modifier
-                    .background(colorResource(id = R.color.save_event_color))
+                    .background(colorResource(id = R.color.primary_purple))
                     .padding(20.dp)
                     .align(Alignment.Center),
                 fontSize = 25.sp,

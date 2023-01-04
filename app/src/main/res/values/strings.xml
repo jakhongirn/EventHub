@@ -10,4 +10,16 @@
     <string name="nav_menu_add">Add</string>
     <string name="explore_title_name">Explore</string>
     <string name="details_about_event">About Event</string>
+    <string name="add_event_title">Event title</string>
+    <string name="placeholder_event_title">e.g. Google I/O</string>
+    <string name="add_date_time">Date &amp; Time</string>
+    <string name="placeholder_date_time">e.g. 2022–12–31 00:00:00</string>
+    <string name="add_location_title">Location</string>
+    <string name="placeholder_location">e.g. Samarkand, Uzbekistan</string>
+    <string name="add_event_price">Price</string>
+    <string name="placeholder_price">e.g 8.9</string>
+    <string name="add_event_imageURL">Image URL</string>
+    <string name="placeholder_imageURL">e.g. https://www.google.com/images…</string>
+    <string name="add_event_description">Description</string>
+    <string name="placeholder_description">e.g. Annual developer conference held by Google in Mountain View, California.</string>
 </resources>

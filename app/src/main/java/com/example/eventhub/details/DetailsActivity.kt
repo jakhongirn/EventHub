@@ -69,7 +69,7 @@ fun DetailsActivity(eventId: String, viewModel: DetailsViewModel = DetailsViewMo
                         fontSize = 22.sp
                     )
                     Text(
-                        fontWeight = FontWeight.ExtraLight,
+                        fontWeight = FontWeight.Normal,
                         text = event!!.description)
 
                 }

@@ -89,13 +89,6 @@ fun EventsList(
 }
 
 
-@Composable
-private fun Date(date: String) {
-    val apiDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-    val dateTime = LocalDate.parse(date, apiDateFormat)
-    Text(text = dateTime.toString(), color = MaterialTheme.colors.primary)
-}
-
 
 @Composable
 fun UpcomingEventCard(
@@ -142,8 +135,10 @@ fun UpcomingEventCard(
             RowDetail(drawable = R.drawable.ic_icon_calendar, detail =event.date )
             RowDetail(drawable = R.drawable.ic_icon_location, detail =event.location )
 
-    } }
-} }
+            }
+        }
+    }
+}
 
 
 @Composable
@@ -159,10 +154,10 @@ fun RowDetail(modifier: Modifier = Modifier, @DrawableRes drawable: Int, detail:
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewList(modifier: Modifier = Modifier) {
-    EventHubTheme() {
-
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PreviewList(modifier: Modifier = Modifier) {
+//    EventHubTheme() {
+//      RowDetail()
+//    }
+//}

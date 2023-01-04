@@ -1,16 +1,10 @@
 package com.example.eventhub
 
 import android.os.Bundle
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.rounded.List
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,25 +16,18 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.zIndex
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import com.example.eventhub.addEvent.AddEventView
 import com.example.eventhub.list.EventsList
 import com.example.eventhub.ui.theme.EventHubTheme
 import com.example.eventhub.R
-import com.example.eventhub.addEvent.AddEventViewModel
-import com.example.eventhub.api.event.EventRequest
 import com.example.eventhub.details.DetailsActivity
-import com.example.eventhub.list.PreviewList
-import com.example.eventhub.list.UpcomingEventCard
 import com.example.eventhub.saved.SavedActivty
 
 
